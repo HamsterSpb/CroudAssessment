@@ -1,6 +1,6 @@
 FROM ubuntu:14.04
 
-RUN apt-get update && apt-get install -y pip
+RUN apt-get update && apt-get install -y python-2.7 vim python-pip
 
 RUN pip install --upgrade pip
 RUN pip install virtualenv
