@@ -17,6 +17,8 @@ app.config.from_object(Config)
 db = SQLAlchemy(app, session_options={"autoflush": False})
 migrate = Migrate(app, db)
 
+checks_by_user = app.config["CHECK_BY_USER"]
+
 app.secret_key = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(100))
 
 from app.models import User, Week, Task, Answer, Assessment, Applic, Check, Project, Assqt, Alock

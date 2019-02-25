@@ -1,10 +1,13 @@
-from app import app, db
+from app import app, db, checks_by_user
 from app.models import User, Week, Task, Answer, Assessment, Applic, Check, Assqt, Alock
 from flask import render_template, url_for, redirect, session, request,  flash
 from sqlalchemy import and_
 
 import time, datetime
 
+
+def get_blank(params):
+	return render_template('get_blank.html', **params)
 
 
 def get_questions(params):
@@ -50,7 +53,7 @@ def get_answers(params):
 	    where answer.user_id = :userid
 	) as q3 on q3.assqt_id = t1.id
 	where
-	(q2.alock_cou < 2 or q2.alock_cou is null)
+	(q2.alock_cou < :checks_by_user or q2.alock_cou is null)
 	and (q1.assqt_id is null or q1.hcks = 0)
 	and t1.week_id = :week_id
 	and q3.assqt_id is null
@@ -67,7 +70,11 @@ def get_answers(params):
 	# if not, lets try to get first free assessment
 	# "free" means that it didn't locked 2 times by another users and didn't already checked by the current user
 	if assqt is None:
-		assqt = Assqt.query.from_statement(db.text(raw_sql)).params(userid=int(session["userid"]), week_id=int(params["cur_week"])).first()
+		assqt = Assqt.query.from_statement(db.text(raw_sql)).params(
+			userid=int(session["userid"]), 
+			week_id=int(params["cur_week"]), 
+			checks_by_user=checks_by_user
+		).first()
 		if assqt is not None:
 			assqt.alocks.append(Alock(user_id=int(session["userid"]),lock_time=time.mktime(datetime.datetime.now().timetuple())))
 
@@ -81,12 +88,17 @@ def get_answers(params):
 	params["assqt_id"] = assqt.id
 	params["answers_cou"] = len(assqt.answers)
 
-	asl = 2 - Check.query.filter(
+	_ch = Check.query.filter(
 		and_(
 			Check.week_id == params["cur_week"], 
 			Check.user_id == int(session["userid"])
 		)
-	).first().checks_count
+	).first()
+
+	if not _ch:
+		asl = checks_by_user
+	else:
+		asl = checks_by_user - _ch.checks_count
 
 	if asl < 0:
 		asl = 0
@@ -152,15 +164,24 @@ def index():
 		flash("No weeks - no job")
 		return redirect('/logout')
 
+	cur_week = None
 	if 'week' not in request.args:
-		cur_week = weeks[0].id
+		for week in weeks:
+		 	if week.is_active:
+		 		cur_week = week.id
+		 		break
 	else:
-		cur_week = int(request.args.get("week"))
+		week = Week.query.get(int(request.args.get("week")))
+		if week.is_active:
+			cur_week = week.id
 
 	params = get_general_params()
 
 	params["weeks"] = weeks;
 	params["cur_week"] = cur_week
+
+	if not cur_week:
+		return get_blank(params)
 
 	is_complete = Applic.query.filter(and_(
 		Applic.user_id == session["userid"],
@@ -211,12 +232,17 @@ def check_by_hands():
 	params["assqt_id"] = assqt.id if assqt else "-1"
 	params["answers_cou"] = len(answers)
 
-	asl = 2 - Check.query.filter(
+	_ch = Check.query.filter(
 		and_(
 			Check.week_id == params["cur_week"], 
 			Check.user_id == int(session["userid"])
 		)
-	).first().checks_count
+	).first()
+
+	if not _ch:
+		asl = checks_by_user
+	else:
+		asl = checks_by_user - _ch.checks_count
 
 	if asl < 0:
 		asl = 0
@@ -321,7 +347,7 @@ def send_assessment():
 
 	_ck.checks_count += 1
 
-	if _ck.checks_count == 2:
+	if _ck.checks_count == checks_by_user:
 		_ck.is_all_done = True
 
 	db.session.commit()
