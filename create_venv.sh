@@ -11,6 +11,7 @@ pip install Flask-Admin
 pip install psycopg2
 
 pip install enum34
+pip install uwsgi
 
 
 
