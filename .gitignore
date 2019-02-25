@@ -102,3 +102,13 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# sqlite db
+app/app.db
+
+# MAC OS
+.DS_Store
+
+# local configs
+start_app_local.sh
+app/config.py

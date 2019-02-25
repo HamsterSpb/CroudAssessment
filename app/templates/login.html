@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login page</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+	<header>
+		<h1>Проверятор заданий</h1>
+		{% for message in get_flashed_messages() %}
+		<div class="error">{{ message }}</div>
+		{% endfor %}
+	</header>
+	<section>
+		<form class="form-login" action="/login" method="POST">
+			<div class="form-element">
+				<input type="text" name="email" placeholder="логин">
+			</div>
+			<div class="form-element">
+				<input type="text" name="groupid" placeholder="id группы">
+			</div>
+			<button>Вход</button>
+		</form>
+	</section>
+</body>
+</html>

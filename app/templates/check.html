@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Assessment</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+	<header>
+		<h1>Проверятор заданий</h1>
+		<div class="login">
+			<p>{{ login }} <a href="/logout" class="fa sign-out">&#xf2f5;</a></p>
+		</div>
+	</header>
+	<div class="wrap">
+		<aside>
+			<input type="radio" name="rg1" id="rg1r1">
+				<label for="rg1r1"><a href="">Неделя 1</a></label>
+			<input type="radio" name="rg1" id="rg1r1">
+				<label for="rg1r1" class="label-active"><a href="">Неделя 2</a></label>
+			<input type="radio" name="rg1" id="rg1r1">
+				<label for="rg1r1" class="label-disabled"><a href="">Неделя 3</a></label>
+			<input type="radio" name="rg1" id="rg1r1">
+				<label for="rg1r1" class="label-disabled"><a href="">Неделя 4</a></label>
+		</aside>
+		<section>
+			<ul>
+				<li>
+					<article>
+						<p>1. Определяем стадию развития продукта</p>
+						<input type="text" name="answer_1" placeholder="Ссылка на google документ">
+					</article>					
+				</li>
+				<li>
+					<article>
+						<p>1. Определяем стадию развития продукта</p>
+						<input type="text" name="answer_1" placeholder="Ссылка на google документ">
+					</article>					
+				</li>
+				<li>
+					<article>
+						<p>1. Определяем стадию развития продукта</p>
+						<input type="text" name="answer_1" placeholder="Ссылка на google документ">
+					</article>					
+				</li>
+				<li>
+					<article>
+						<p>1. Определяем стадию развития продукта</p>
+						<input type="text" name="answer_1" placeholder="Ссылка на google документ">
+					</article>					
+				</li>
+			</ul>
+			<button class="btn-sec">Отправить</button>
+		</section>
+	</div>
+</body>
+</html>

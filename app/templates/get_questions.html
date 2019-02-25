@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<section>
+	<p class="sec-head">Вы еще не сдали задания этой недели. После отправки станут доступны задания на проверку.</p>
+	<form method="POST" action="/send_answers">
+		<input type="hidden" name="week_id" value="{{ cur_week }}">
+		<ul>
+			{% for task in tasks %}
+			<li>
+				<article>
+					<p>{{ task.num }}. {{ task.descr }}</p>
+					<input type="text" name="{{ task.id }}" placeholder="Ссылка на google документ">
+				</article>					
+			</li>
+			{% endfor %}
+		</ul>
+		<button class="btn-sec">Отправить</button>
+	</form>
+</section>
+
+{% endblock %}

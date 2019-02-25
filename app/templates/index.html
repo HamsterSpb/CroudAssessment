@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Проверятор</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+	<header>
+		<h1>Проверятор заданий</h1>
+		{% for message in get_flashed_messages() %}
+		<div class="error">{{ message }}</div>
+		{% endfor %}
+		<div class="login">
+			<p>{{ login }} <a href="/logout" class="fa sign-out">&#xf2f5;</a></p>
+		</div>
+	</header>
+	<div class="wrap">
+		<aside>
+			{% for week in weeks%}
+			<input type="radio" name="rg1" id="rg1r1" data-week-id="{{ week.id }}">
+			<label for="rg1r1" class="
+			{% if not week.is_active %}
+				label-disabled
+			{% endif %}
+			{% if week.id == cur_week %}
+				label-active
+			{% endif %}
+			">
+				{% if week.is_active %}
+				<a href="/?week={{ week.id }}">Неделя {{ week.num }}</a>
+				{% else %}
+				Неделя {{ week.num }}
+				{% endif %}
+			</label>			
+			{% endfor %}
+		</aside>
+
+		{% block content %}
+		{% endblock %}
+
+	</div>
+</body>
+</html>

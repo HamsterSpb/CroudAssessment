@@ -1,0 +1,50 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<section>
+	<p class="sec-head">Для того, чтобы получить результат своей работы, нужно проверить еще <b>{{ assessment_left }}</b> работ(ы)</p>
+	<form method="POST" action="/send_assessment">
+		<input type="hidden" name="week_id" value="{{ cur_week }}">
+		<input type="hidden" name="assqt_id" value="{{ assqt_id }}">
+		<input type="hidden" name="answered_by_id" value="{{ answered_by }}">
+		<input type="hidden" name="answers_cou" value="{{ answers_cou }}">
+		<ul>
+			{% for answer in answers %}
+				<input type="hidden" name="ans_id_{{ answer.task.num }}" value="{{ answer.id}}">
+				<li>
+					<article class="art-ans">
+						<h3>{{ answer.task.num }}. {{ answer.task.descr }}</h3>
+						<!--<p>вдруг понадобится небольшое пояснение к вопросу?</p>-->
+						<div class="ans-sec">
+							<p>Ответ:</p>
+							<p><a href="{{ answer.answer }}">{{ answer.answer }}</a></p>
+						</div>
+						<div class="ans-sec">
+						<p>Оценка:</p>
+							<div class="score">
+								<input type="radio" name="rg2_{{ answer.task.num }}" id="gr2_{{ answer.task.num }}_1" value="1"><label for="gr2_{{ answer.task.num }}_1">1</label>
+								<input type="radio" name="rg2_{{ answer.task.num }}" id="gr2_{{ answer.task.num }}_2" value="2"><label for="gr2_{{ answer.task.num }}_2">2</label>
+								<input type="radio" name="rg2_{{ answer.task.num }}" id="gr2_{{ answer.task.num }}_3" value="3"><label for="gr2_{{ answer.task.num }}_3">3</label>
+								<input type="radio" name="rg2_{{ answer.task.num }}" id="gr2_{{ answer.task.num }}_4" value="4"><label for="gr2_{{ answer.task.num }}_4">4</label>
+								<input type="radio" name="rg2_{{ answer.task.num }}" id="gr2_{{ answer.task.num }}_5" value="5"><label for="gr2_{{ answer.task.num }}_5">5</label>
+								<input type="radio" name="rg2_{{ answer.task.num }}" id="gr2_{{ answer.task.num }}_6" value="6"><label for="gr2_{{ answer.task.num }}_6">6</label>
+								<input type="radio" name="rg2_{{ answer.task.num }}" id="gr2_{{ answer.task.num }}_7" value="7"><label for="gr2_{{ answer.task.num }}_7">7</label>
+								<input type="radio" name="rg2_{{ answer.task.num }}" id="gr2_{{ answer.task.num }}_8" value="8"><label for="gr2_{{ answer.task.num }}_8">8</label>
+								<input type="radio" name="rg2_{{ answer.task.num }}" id="gr2_{{ answer.task.num }}_9" value="9"><label for="gr2_{{ answer.task.num }}_9">9</label>
+								<input type="radio" name="rg2_{{ answer.task.num }}" id="gr2_{{ answer.task.num }}_10" value="10"><label for="gr2_{{ answer.task.num }}_10">10</label>
+							</div>
+						</div>
+						<div class="ans-sec">
+							<p>Комментарий:</p>
+							<textarea name="ans_desc_{{ answer.task.num }}"></textarea>
+						</div>
+					</article>					
+				</li>
+			{% endfor %}
+		</ul>
+		<button class="btn-sec">Отправить</button>
+	</form>
+</section>
+
+{% endblock %}

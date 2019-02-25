@@ -1,0 +1,44 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<section>
+	<p class="sec-head">Результаты проверки</p>
+	{% if not answers %}
+	<p>Похоже, работу не проверило нужно число участников. Можно попросить проверить работу, отправив ссылку:</p>
+	<a href="/check?week={{ cur_week }}&answered_by={{ userid }}">ссылка</a>
+	{% endif %}
+	<ul>
+		{% for answer in answers %}
+		<li>
+					<article class="art-ans">
+						<h3>{{ answer.question_num }}. {{ answer.question }}</h3>
+						<!--<p>вдруг понадобится небольшое пояснение к вопросу?</p>-->
+						<div class="ans-sec">
+							<p>Ваш ответ:</p>
+							<p><a href="{{ answer.answer }}">{{ answer.answer }}</a></p>
+						</div>
+						<div class="ans-sec">
+						<p>Средняя оценка:</p>
+						<p>{{ answer.average_score }}</p>
+						</div>
+						<div class="ans-sec">
+							<p>Комментарий:</p>
+						</div>
+						{% for assessment in answer.assessments %}
+						{% if assessment.descr %}
+						<div class="ans-sec">
+							<p>{{ loop.index }}.</p>
+							<p class="ans-descr">{{ assessment.descr }}</p>
+						</div>
+						{% endif %}			
+						{% endfor %}
+
+					</article>					
+				</li>
+			{% endfor %}
+	</ul>
+
+</section>
+
+{% endblock %}

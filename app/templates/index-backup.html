@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Assessment</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+	<header>
+		<h1>Проверятор заданий</h1>
+		<div class="login">
+			<p>{{ login }} <a href="/logout" class="fa sign-out">&#xf2f5;</a></p>
+		</div>
+	</header>
+	<div class="wrap">
+		<aside>
+			{% for week in weeks%}
+			<input type="radio" name="rg1" id="rg1r1">
+				<label for="rg1r1" class="
+				{% if !week.is_active %}
+					label-disabled
+				{% endif %}
+				{% if week.id == cur_week %}
+					label-active
+				{% endif %}
+				"><a href="/?week={{ week.id }}">Неделя {{ week.num }}</a></label>			
+			{% endfor %}
+
+			<input type="radio" name="rg1" id="rg1r1">
+				<label for="rg1r1"><a href="/?week=1">Неделя 1</a></label>
+			<input type="radio" name="rg1" id="rg1r1">
+				<label for="rg1r1" class="label-active"><a href="/?week=2">Неделя 2</a></label>
+			<input type="radio" name="rg1" id="rg1r1">
+				<label for="rg1r1" class="label-disabled">Неделя 3</label>
+			<input type="radio" name="rg1" id="rg1r1">
+				<label for="rg1r1" class="label-disabled">Неделя 4</label>
+		</aside>
+		<!--
+		<section>
+			<p class="sec-head">Ваша работа была проверена. Результаты:</p>
+			<ul>
+				<li>
+					<article class="art-ans">
+						<h3>1. Определяем стадию развития продукта</h3>
+						<p>вдруг понадобится небольшое пояснение к вопросу?</p>
+						<div class="ans-sec">
+							<p>Ваш ответ:</p>
+							<p><a href="https://docs.google.com/sadsdjsah(hghjgjhg">https://docs.google.com/sadsdjsah(hghjgjhg</a></p>
+						</div>
+						<div class="ans-sec">
+						<p>Средняя оценка:</p>
+							<div class="score">
+								<input type="radio" name="rg2_1" id="gr2_1_1"><label for="gr2_1_1">1</label>
+								<input type="radio" name="rg2_1" id="gr2_1_2"><label for="gr2_1_2">2</label>
+								<input type="radio" name="rg2_1" id="gr2_1_3"><label for="gr2_1_3">3</label>
+								<input type="radio" name="rg2_1" id="gr2_1_4" checked><label for="gr2_1_4">4</label>
+								<input type="radio" name="rg2_1" id="gr2_1_5"><label for="gr2_1_5">5</label>
+								<input type="radio" name="rg2_1" id="gr2_1_6"><label for="gr2_1_6">6</label>
+								<input type="radio" name="rg2_1" id="gr2_1_7"><label for="gr2_1_7">7</label>
+								<input type="radio" name="rg2_1" id="gr2_1_8"><label for="gr2_1_8">8</label>
+								<input type="radio" name="rg2_1" id="gr2_1_9"><label for="gr2_1_9">9</label>
+								<input type="radio" name="rg2_1" id="gr2_1_10"><label for="gr2_1_10">10</label>
+							</div>
+						</div>
+						<div class="ans-sec">
+							<p>Комментарий:</p>
+						</div>
+						<div class="ans-sec">
+							<p>1</p>
+							<p class="ans-descr">Онлайн школа английского языка, привлекла несколько раундов инвестиций, растёт каждый год в три раза по выручке, клиенты с высокой вероятностью рекомендуют школу друзьям. В штате 100 разработчиков.
+</p>
+						</div>
+						<div class="ans-sec">
+							<p>2</p>
+							<p class="ans-descr">Онлайн школа английского языка, привлекла несколько раундов инвестиций, растёт каждый год в три раза по выручке, клиенты с высокой вероятностью рекомендуют школу друзьям. В штате 100 разработчиков.
+</p>
+						</div>
+					</article>					
+				</li>
+				<li>
+					<article class="art-ans">
+						<h3>1. Определяем стадию развития продукта</h3>
+						<p>вдруг понадобится небольшое пояснение к вопросу?</p>
+						<div class="ans-sec">
+							<p>Ваш ответ:</p>
+							<p><a href="https://docs.google.com/sadsdjsah(hghjgjhg">https://docs.google.com/sadsdjsah(hghjgjhg</a></p>
+						</div>
+						<div class="ans-sec">
+						<p>Средняя оценка:</p>
+							<div class="score">
+								<input type="radio" name="rg2_1" id="gr2_1_1"><label for="gr2_1_1">1</label>
+								<input type="radio" name="rg2_1" id="gr2_1_2"><label for="gr2_1_2">2</label>
+								<input type="radio" name="rg2_1" id="gr2_1_3"><label for="gr2_1_3">3</label>
+								<input type="radio" name="rg2_1" id="gr2_1_4" checked><label for="gr2_1_4">4</label>
+								<input type="radio" name="rg2_1" id="gr2_1_5"><label for="gr2_1_5">5</label>
+								<input type="radio" name="rg2_1" id="gr2_1_6"><label for="gr2_1_6">6</label>
+								<input type="radio" name="rg2_1" id="gr2_1_7"><label for="gr2_1_7">7</label>
+								<input type="radio" name="rg2_1" id="gr2_1_8"><label for="gr2_1_8">8</label>
+								<input type="radio" name="rg2_1" id="gr2_1_9"><label for="gr2_1_9">9</label>
+								<input type="radio" name="rg2_1" id="gr2_1_10"><label for="gr2_1_10">10</label>
+							</div>
+						</div>
+						<div class="ans-sec">
+							<p>Комментарий:</p>
+						</div>
+						<div class="ans-sec">
+							<p>1</p>
+							<p class="ans-descr">Онлайн школа английского языка, привлекла несколько раундов инвестиций, растёт каждый год в три раза по выручке, клиенты с высокой вероятностью рекомендуют школу друзьям. В штате 100 разработчиков.
+</p>
+						</div>
+						<div class="ans-sec">
+							<p>2</p>
+							<p class="ans-descr">Онлайн школа английского языка, привлекла несколько раундов инвестиций, растёт каждый год в три раза по выручке, клиенты с высокой вероятностью рекомендуют школу друзьям. В штате 100 разработчиков.
+</p>
+						</div>
+					</article>					
+				</li>
+				<li>
+					<article class="art-ans">
+						<h3>1. Определяем стадию развития продукта</h3>
+						<p>вдруг понадобится небольшое пояснение к вопросу?</p>
+						<div class="ans-sec">
+							<p>Ваш ответ:</p>
+							<p><a href="https://docs.google.com/sadsdjsah(hghjgjhg">https://docs.google.com/sadsdjsah(hghjgjhg</a></p>
+						</div>
+						<div class="ans-sec">
+						<p>Средняя оценка:</p>
+							<div class="score">
+								<input type="radio" name="rg2_1" id="gr2_1_1"><label for="gr2_1_1">1</label>
+								<input type="radio" name="rg2_1" id="gr2_1_2"><label for="gr2_1_2">2</label>
+								<input type="radio" name="rg2_1" id="gr2_1_3"><label for="gr2_1_3">3</label>
+								<input type="radio" name="rg2_1" id="gr2_1_4" checked><label for="gr2_1_4">4</label>
+								<input type="radio" name="rg2_1" id="gr2_1_5"><label for="gr2_1_5">5</label>
+								<input type="radio" name="rg2_1" id="gr2_1_6"><label for="gr2_1_6">6</label>
+								<input type="radio" name="rg2_1" id="gr2_1_7"><label for="gr2_1_7">7</label>
+								<input type="radio" name="rg2_1" id="gr2_1_8"><label for="gr2_1_8">8</label>
+								<input type="radio" name="rg2_1" id="gr2_1_9"><label for="gr2_1_9">9</label>
+								<input type="radio" name="rg2_1" id="gr2_1_10"><label for="gr2_1_10">10</label>
+							</div>
+						</div>
+						<div class="ans-sec">
+							<p>Комментарий:</p>
+						</div>
+						<div class="ans-sec">
+							<p>1</p>
+							<p class="ans-descr">Онлайн школа английского языка, привлекла несколько раундов инвестиций, растёт каждый год в три раза по выручке, клиенты с высокой вероятностью рекомендуют школу друзьям. В штате 100 разработчиков.
+</p>
+						</div>
+						<div class="ans-sec">
+							<p>2</p>
+							<p class="ans-descr">Онлайн школа английского языка, привлекла несколько раундов инвестиций, растёт каждый год в три раза по выручке, клиенты с высокой вероятностью рекомендуют школу друзьям. В штате 100 разработчиков.
+</p>
+						</div>
+					</article>					
+				</li>
+			</ul>
+		</section>
+		-->
+		<!--
+		<section>
+			<p class="sec-head">Чтобы увидеть результаты проверки вашей работы, осталось проверить <b>2</b> работы</p>
+			<ul>
+				<li>
+					<article class="art-ans">
+						<h3>1. Определяем стадию развития продукта</h3>
+						<p>вдруг понадобится небольшое пояснение к вопросу?</p>
+						<div class="ans-sec">
+							<p>Ответ:</p>
+							<p><a href="https://docs.google.com/sadsdjsah(hghjgjhg">https://docs.google.com/sadsdjsah(hghjgjhg</a></p>
+						</div>
+						<div class="ans-sec">
+						<p>Оценка:</p>
+							<div class="score">
+								<input type="radio" name="rg2_1" id="gr2_1_1"><label for="gr2_1_1">1</label>
+								<input type="radio" name="rg2_1" id="gr2_1_2"><label for="gr2_1_2">2</label>
+								<input type="radio" name="rg2_1" id="gr2_1_3"><label for="gr2_1_3">3</label>
+								<input type="radio" name="rg2_1" id="gr2_1_4"><label for="gr2_1_4">4</label>
+								<input type="radio" name="rg2_1" id="gr2_1_5"><label for="gr2_1_5">5</label>
+								<input type="radio" name="rg2_1" id="gr2_1_6"><label for="gr2_1_6">6</label>
+								<input type="radio" name="rg2_1" id="gr2_1_7"><label for="gr2_1_7">7</label>
+								<input type="radio" name="rg2_1" id="gr2_1_8"><label for="gr2_1_8">8</label>
+								<input type="radio" name="rg2_1" id="gr2_1_9"><label for="gr2_1_9">9</label>
+								<input type="radio" name="rg2_1" id="gr2_1_10"><label for="gr2_1_10">10</label>
+							</div>
+						</div>
+						<div class="ans-sec">
+							<p>Комментарий:</p>
+							<textarea name="ans_desc"></textarea>
+						</div>
+					</article>					
+				</li>
+				<li>
+					<article class="art-ans">
+						<h3>1. Определяем стадию развития продукта</h3>
+						<div class="ans-sec">
+							<p>Ответ:</p>
+							<p><a href="https://docs.google.com/sadsdjsah(hghjgjhg">https://docs.google.com/sadsdjsah(hghjgjhg</a></p>
+						</div>
+						<div class="ans-sec">
+						<p>Оценка:</p>
+							<div class="score">
+								<input type="radio" name="rg2_1" id="gr2_1_1"><label for="gr2_1_1">1</label>
+								<input type="radio" name="rg2_1" id="gr2_1_2"><label for="gr2_1_2">2</label>
+								<input type="radio" name="rg2_1" id="gr2_1_3"><label for="gr2_1_3">3</label>
+								<input type="radio" name="rg2_1" id="gr2_1_4"><label for="gr2_1_4">4</label>
+								<input type="radio" name="rg2_1" id="gr2_1_5"><label for="gr2_1_5">5</label>
+								<input type="radio" name="rg2_1" id="gr2_1_6"><label for="gr2_1_6">6</label>
+								<input type="radio" name="rg2_1" id="gr2_1_7"><label for="gr2_1_7">7</label>
+								<input type="radio" name="rg2_1" id="gr2_1_8"><label for="gr2_1_8">8</label>
+								<input type="radio" name="rg2_1" id="gr2_1_9"><label for="gr2_1_9">9</label>
+								<input type="radio" name="rg2_1" id="gr2_1_10"><label for="gr2_1_10">10</label>
+							</div>
+						</div>
+						<div class="ans-sec">
+							<p>Комментарий:</p>
+							<textarea name="ans_desc"></textarea>
+						</div>
+					</article>					
+				</li>
+				<li>
+					<article class="art-ans">
+						<h3>1. Определяем стадию развития продукта</h3>
+						<div class="ans-sec">
+							<p>Ответ:</p>
+							<p><a href="https://docs.google.com/sadsdjsah(hghjgjhg">https://docs.google.com/sadsdjsah(hghjgjhg</a></p>
+						</div>
+						<div class="ans-sec">
+						<p>Оценка:</p>
+							<div class="score">
+								<input type="radio" name="rg2_1" id="gr2_1_1"><label for="gr2_1_1">1</label>
+								<input type="radio" name="rg2_1" id="gr2_1_2"><label for="gr2_1_2">2</label>
+								<input type="radio" name="rg2_1" id="gr2_1_3"><label for="gr2_1_3">3</label>
+								<input type="radio" name="rg2_1" id="gr2_1_4"><label for="gr2_1_4">4</label>
+								<input type="radio" name="rg2_1" id="gr2_1_5"><label for="gr2_1_5">5</label>
+								<input type="radio" name="rg2_1" id="gr2_1_6"><label for="gr2_1_6">6</label>
+								<input type="radio" name="rg2_1" id="gr2_1_7"><label for="gr2_1_7">7</label>
+								<input type="radio" name="rg2_1" id="gr2_1_8"><label for="gr2_1_8">8</label>
+								<input type="radio" name="rg2_1" id="gr2_1_9"><label for="gr2_1_9">9</label>
+								<input type="radio" name="rg2_1" id="gr2_1_10"><label for="gr2_1_10">10</label>
+							</div>
+						</div>
+						<div class="ans-sec">
+							<p>Комментарий:</p>
+							<textarea name="ans_desc"></textarea>
+						</div>
+					</article>					
+				</li>
+				<li>
+					<article class="art-ans">
+						<h3>1. Определяем стадию развития продукта</h3>
+						<div class="ans-sec">
+							<p>Ответ:</p>
+							<p><a href="https://docs.google.com/sadsdjsah(hghjgjhg">https://docs.google.com/sadsdjsah(hghjgjhg</a></p>
+						</div>
+						<div class="ans-sec">
+						<p>Оценка:</p>
+							<div class="score">
+								<input type="radio" name="rg2_1" id="gr2_1_1"><label for="gr2_1_1">1</label>
+								<input type="radio" name="rg2_1" id="gr2_1_2"><label for="gr2_1_2">2</label>
+								<input type="radio" name="rg2_1" id="gr2_1_3"><label for="gr2_1_3">3</label>
+								<input type="radio" name="rg2_1" id="gr2_1_4"><label for="gr2_1_4">4</label>
+								<input type="radio" name="rg2_1" id="gr2_1_5"><label for="gr2_1_5">5</label>
+								<input type="radio" name="rg2_1" id="gr2_1_6"><label for="gr2_1_6">6</label>
+								<input type="radio" name="rg2_1" id="gr2_1_7"><label for="gr2_1_7">7</label>
+								<input type="radio" name="rg2_1" id="gr2_1_8"><label for="gr2_1_8">8</label>
+								<input type="radio" name="rg2_1" id="gr2_1_9"><label for="gr2_1_9">9</label>
+								<input type="radio" name="rg2_1" id="gr2_1_10"><label for="gr2_1_10">10</label>
+							</div>
+						</div>
+						<div class="ans-sec">
+							<p>Комментарий:</p>
+							<textarea name="ans_desc"></textarea>
+						</div>
+					</article>					
+				</li>				
+			</ul>
+			<button class="btn-sec">Отправить</button>
+		</section>
+		-->
+		<!--
+		<section>
+			<p class="sec-head">Вы еще не сдали задания этой недели. После отправки станут доступны задания на проверку.</p>
+			<ul>
+				<li>
+					<article>
+						<p>1. Определяем стадию развития продукта</p>
+						<input type="text" name="answer_1" placeholder="Ссылка на google документ">
+					</article>					
+				</li>
+				<li>
+					<article>
+						<p>1. Определяем стадию развития продукта</p>
+						<input type="text" name="answer_1" placeholder="Ссылка на google документ">
+					</article>					
+				</li>
+				<li>
+					<article>
+						<p>1. Определяем стадию развития продукта</p>
+						<input type="text" name="answer_1" class="input-error" placeholder="Ссылка на google документ">
+					</article>					
+				</li>
+				<li>
+					<article>
+						<p>1. Определяем стадию развития продукта</p>
+						<input type="text" name="answer_1" placeholder="Ссылка на google документ">
+					</article>					
+				</li>
+			</ul>
+			<button class="btn-sec">Отправить</button>
+		</section>
+		-->
+	</div>
+</body>
+</html>
