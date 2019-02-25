@@ -7,6 +7,7 @@ class User(db.Model):
 	email = 						db.Column(db.String(256))
 	group = 						db.Column(db.String(128))
 	project_id = 					db.Column(db.Integer, db.ForeignKey('project.id'), nullable=False)
+	is_admin = 						db.Column(db.Boolean)
 
 	project = 						db.relationship('Project', backref='users')	
 

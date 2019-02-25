@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, session, request
 from config import Config
 
 from flask_sqlalchemy import SQLAlchemy
@@ -23,16 +23,28 @@ app.secret_key = ''.join(random.choice(string.ascii_uppercase + string.digits) f
 
 from app.models import User, Week, Task, Answer, Assessment, Applic, Check, Project, Assqt, Alock
 
+
+class AssessModelView(ModelView):
+	def is_accessible(self):
+		if 'is_admin' in session and session["is_admin"] == "1":
+			return True
+		else:
+			return False
+
+	def inaccessible_callback(self, name, **kwargs):
+		return redirect(url_for('login', next=request.url))
+
+
 admin = Admin(app, name='app', template_mode='bootstrap3')
-admin.add_view(ModelView(User, db.session))
-admin.add_view(ModelView(Project, db.session))
-admin.add_view(ModelView(Week, db.session))
-admin.add_view(ModelView(Task, db.session))
-admin.add_view(ModelView(Answer, db.session))
-admin.add_view(ModelView(Assessment, db.session))
-admin.add_view(ModelView(Check, db.session))
-admin.add_view(ModelView(Assqt, db.session))
-admin.add_view(ModelView(Applic, db.session))
-admin.add_view(ModelView(Alock, db.session))
+admin.add_view(AssessModelView(User, db.session))
+admin.add_view(AssessModelView(Project, db.session))
+admin.add_view(AssessModelView(Week, db.session))
+admin.add_view(AssessModelView(Task, db.session))
+admin.add_view(AssessModelView(Answer, db.session))
+admin.add_view(AssessModelView(Assessment, db.session))
+admin.add_view(AssessModelView(Check, db.session))
+admin.add_view(AssessModelView(Assqt, db.session))
+admin.add_view(AssessModelView(Applic, db.session))
+admin.add_view(AssessModelView(Alock, db.session))
 
 from app import routes

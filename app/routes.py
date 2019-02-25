@@ -367,6 +367,7 @@ def login():
 			session['login'] = login
 			session['group'] = groupid
 			session["userid"] = _v.id
+			session["is_admin"] = "1" if _v.is_admin else "0"
 			return redirect('/')
 		else:
 			flash("User nor found")
