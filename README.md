@@ -19,6 +19,15 @@ One answers questions, then assess other people's answers.
 ./create_venv.sh
 source .venv/bin/activate
 cp app/config_docker.py app/config.py
+```
+
+В файл app/config.py нужно добавить строчку
+```python
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
+```
+, а такую же строчку про постгрес - убрать (все равно пострес по этоу адресу доступен только внутри облака).
+
+```bash
 ./start_app_local.sh
 ```
 
