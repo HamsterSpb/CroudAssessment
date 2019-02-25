@@ -10,12 +10,12 @@
 
 Набираем команды в консоли:
 
-%%
+```bash
 ./create_venv.sh
 source .venv/bin/activate
 cp app/config_docker.py app/config.py
 ./start_app_local.sh
-%%
+```
 
 В браузере на http://127.0.0.1:5000 появится приложение.
 
@@ -23,7 +23,7 @@ cp app/config_docker.py app/config.py
 
 Для этого делаем в консоли
 
-%%
+```python
 source .venv/bin/activate
 flask shell
 from app import db
@@ -46,7 +46,7 @@ db.session.commit()
 
 quit()
 
-%%
+```
 
 Смысл сделанного в следующем.
 Project - это "разделитель учета". Нужен для того, чтобы можно было размещать параллельные задания для разных курсов, проектов итд.
