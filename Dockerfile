@@ -1,5 +1,7 @@
 FROM ubuntu:14.04
 
+RUN apt-get update && apt-get install -y pip
+
 RUN pip install --upgrade pip
 RUN pip install virtualenv
 
