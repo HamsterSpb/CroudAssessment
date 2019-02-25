@@ -131,7 +131,7 @@ def get_results(params):
 		return score / i
 
 	for answer in answers:
-		if len(answer.assessments) < 2:
+		if len(answer.assessments) < checks_by_user:
 			continue
 		cres = {}
 		cres["question"] = answer.task.descr
