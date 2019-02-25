@@ -263,7 +263,7 @@ def send_answers():
 	_a = Assqt()
 	_a.week_id = cur_week
 	_a.user_id = int(session["userid"])
-	_a.checks_left = 2
+	_a.checks_left = checks_by_user
 	db.session.add(_a)
 	for key in request.form:
 		if key == "week_id":
@@ -308,14 +308,14 @@ def send_assessment():
 	if _aq:
 		for _c in _aq.checked_by:
 			if _c.id == user_id:
-				flash("You already checked this assessment")
+				flash("You've already assessed this assignment")
 				return redirect('/')
 
 	for i in range(1, int(answers_cou)+1):
 		_a = Assessment()
 		_a.answer = Answer.query.get(int(request.form.get('ans_id_{}'.format(i))))
 		if _a.answer.user.id == user_id:
-			flash("Not impossible to assess own answer")
+			flash("It's impossible to assess your own assignment")
 			return redirect('/')
 		_a.assessed_by = User.query.get(int(session["userid"]))
 		_a.score = request.form.get('rg2_{}'.format(i))
@@ -338,12 +338,11 @@ def send_assessment():
 	)).first()
 
 	if _ck is None:
-		with db.session.no_autoflush:
-			_ck = Check()
-			_ck.user = User.query.get(user_id)
-			_ck.week = Week.query.get(cur_week)
-			_ck.checks_count = 0
-			db.session.add(_ck)
+		_ck = Check()
+		_ck.user = User.query.get(user_id)
+		_ck.week = Week.query.get(cur_week)
+		_ck.checks_count = 0
+		db.session.add(_ck)
 
 	_ck.checks_count += 1
 
