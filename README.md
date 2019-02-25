@@ -1,3 +1,8 @@
+**Crowdsessment** - very simple web application for crowd-based assessing assignments.
+One answers questions, then assess other people's answers.
+
+---
+
 **Crowdsessment** - простое веб приложение для совместной оценки заданий.
 
 Сначала пользователи сдают задания, а потом проверяют задания друг друга.
