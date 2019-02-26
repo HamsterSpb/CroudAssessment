@@ -123,7 +123,8 @@ def get_results(params):
 		i = 0
 		score = 0
 		for assessment in assessments:
-			score += int(assessment.score)
+			cur_score = 0 if not assessment.score else assessment.score
+			score += int(cur_score)
 			i += 1
 		if i == 0:
 			return 0
