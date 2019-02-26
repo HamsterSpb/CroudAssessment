@@ -5,8 +5,7 @@
 <section>
 	<p class="sec-head">Результаты проверки</p>
 	{% if not answers %}
-	<p>Похоже, работу не проверило нужно число участников. Можно попросить проверить работу, отправив ссылку:</p>
-	<a href="/check?week={{ cur_week }}&answered_by={{ userid }}">ссылка</a>
+	<p class="sec-head">Похоже, работу не проверило нужно число участников. Можно попросить проверить работу, отправив ссылку: <a href="/check?week={{ cur_week }}&answered_by={{ userid }}">ссылка</a></p>
 	{% endif %}
 	<ul>
 		{% for answer in answers %}
@@ -29,7 +28,7 @@
 						{% if assessment.descr %}
 						<div class="ans-sec">
 							<p>{{ loop.index }}.</p>
-							<p class="ans-descr"><pre>{{ assessment.descr }}</pre></p>
+							<pre class="ans-descr">{{ assessment.descr }}</pre>
 						</div>
 						{% endif %}			
 						{% endfor %}
