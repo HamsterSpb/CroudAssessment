@@ -17,13 +17,11 @@ header {
 }
 
 .error {
-	top: 100px;
-	position: absolute;
+	margin: -40px 0 10px 0;
 	width: 300px;
 	border-radius: 10px;
 	text-align: center;
 	background-color: red;
-	height: 20px;
 	padding: 5px;
 	color: white;
 }
