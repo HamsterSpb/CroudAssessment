@@ -36,6 +36,9 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
 , а такую же строчку про постгрес - убрать (все равно постгрес по этому адресу доступен только внутри облака).
 
 ```bash
+(.venv) login@login-w10:$ flask db init
+(.venv) login@login-w10:$ flask db migrate
+(.venv) login@login-w10:$ flask db upgrade
 (.venv) login@login-w10:$ ./start_app_local.sh
 ```
 
