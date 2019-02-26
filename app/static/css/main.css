@@ -146,6 +146,10 @@ article input[type="text"] {
 	margin: 20px 0;
 }
 
+.ans-sec pre{
+	white-space: pre-line;
+}
+
 .score label{
 	margin: 0 15px 0 5px;
 }
