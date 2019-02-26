@@ -11,24 +11,32 @@ One answers questions, then assess other people's answers.
 
 Прод живет тут: http://130.193.53.36/
 
+У каждого задания есть необходимое количество проверок (после которого задание будет считаться проверенным). Такое же количество проверок - обязательно для участников. То есть если каждое задание должно быть проверено два раза, каждый участник, в свою очередь, должен проверить два задания.
+
+Могут быть ситуации, когда задания на проверку заданчиваются. В таком случае нужно ждать поступления новых заданий или попросить прислать ссылку на уже проверенные.
+
+Может быть и так, что задание пользователя никто не проверил. В такой ситуации можно взять ссылку и прислать ее на проверку любому другому участнику с логином и паролем.
+
+Сейчас приложение на начальном этапе развития. Проверок прав доступа, обработки ошибок и всего такого нет. Считается, что все мы честные :) Знайте и не злоупотребляйте )
+
 Для локального запуска понадобится python 2.7 и pip
 
 Набираем команды в консоли:
 
 ```bash
-./create_venv.sh
-source .venv/bin/activate
-cp app/config_docker.py app/config.py
+login@login-w10:$ ./create_venv.sh
+login@login-w10:$ source .venv/bin/activate
+(.venv) login@login-w10:$ cp app/config_docker.py app/config.py
 ```
 
 В файл app/config.py нужно добавить строчку
 ```python
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
 ```
-, а такую же строчку про постгрес - убрать (все равно пострес по этоу адресу доступен только внутри облака).
+, а такую же строчку про постгрес - убрать (все равно постгрес по этому адресу доступен только внутри облака).
 
 ```bash
-./start_app_local.sh
+(.venv) login@login-w10:$ ./start_app_local.sh
 ```
 
 В браузере на http://127.0.0.1:5000 появится приложение.
@@ -38,27 +46,27 @@ SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
 Для этого делаем в консоли
 
 ```python
-source .venv/bin/activate
-flask shell
-from app import db
-from app.models import User, Project
+login@login-w10:$ source .venv/bin/activate
+(.venv) login@login-w10:$ flask shell
+>>>from app import db
+>>>from app.models import User, Project
 
-p = Project()
-p.name = "Test project"
+>>>p = Project()
+>>>p.name = "Test project"
 
-db.session.add(p)
+>>>db.session.add(p)
 
-v = User()
-v.email = "test@email.com"
-v.is_admin = True
-v.group = "OXTY"
-v.project_id = 1
+>>>v = User()
+>>>v.email = "test@email.com"
+>>>v.is_admin = True
+>>>v.group = "OXTY"
+>>>v.project_id = 1
 
-db.session.add(v)
+>>>db.session.add(v)
 
-db.session.commit()
+>>>db.session.commit()
 
-quit()
+>>>quit()
 
 ```
 
